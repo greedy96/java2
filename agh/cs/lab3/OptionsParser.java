@@ -29,6 +29,9 @@ public class OptionsParser {
             if(direction != null) {
                 directions.add(direction);
             }
+            else {
+            	throw new IllegalArgumentException(option + " is not legal move specification");
+            }
         }
         return directions;
     }

@@ -1,5 +1,6 @@
 package agh.cs.lab5;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,11 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap  {
     
 	
 	public void addStack(HayStack stack){
-		this.stacks.add(stack);
+		if(this.canMoveTo(stack.getPosition())){
+			this.stacks.add(stack);
+			
+		}
+		else throw new IllegalArgumentException("cant add new object: " + stack.getPosition());
 	}
 	
 	public void bound(){
@@ -53,10 +58,8 @@ public class UnboundedMap extends AbstractWorldMap implements IWorldMap  {
 			this.cars.add(car);
 			return true;
 		}
-		return false;
+		throw new IllegalArgumentException("cant add new object: " + car.getPosition());
 	}
-
-	
 
 	@Override
 	public boolean isOccupied(Position position) {
